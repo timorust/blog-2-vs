@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "angular-blog-062021": {
+      "hosting": {
+        "blog": [
+          "angular-blog-062021"
+        ]
+      }
+    },
+    "vs-blog-2": {
+      "hosting": {
+        "blog": [
+          "vs-blog-2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-blog-062021"
+  }
+}
