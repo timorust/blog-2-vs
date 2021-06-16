@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PostInterface } from 'src/app/post.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { CoreService } from 'src/app/services/core.service';
@@ -9,9 +9,11 @@ import { UserInterface } from 'src/app/user.interface';
   templateUrl: './posts-page.component.html',
   styleUrls: ['./posts-page.component.scss']
 })
-export class PostsPageComponent implements OnInit {
+export class PostsPageComponent implements OnInit, OnDestroy {
 
-  blogPosts: PostInterface[];
+  posts: PostInterface[];
+  postsSub;
+
   user: UserInterface;
   userSub;
 
@@ -21,22 +23,21 @@ export class PostsPageComponent implements OnInit {
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe((user: UserInterface) => {
       this.user = user;
-      this.getBlogPosts();
     })
+    this.getBlog();
   }
 
-  getBlogPosts() {
-    this.coreService.getBlogPosts().subscribe((posts: PostInterface[]) => {
-      this.blogPosts = posts;
+  ngOnDestroy() {
+    if(this.userSub) this.userSub.unsubscribe();
+    if(this.postsSub) this.postsSub.unsubscribe();
+  }
 
-      this.blogPosts.forEach(postItem => {
-        postItem.userId = this.user.uid;
-
-        this.coreService.copyDataFromPlaceholder(postItem).then(() => {
-        })
-      })
-
+  getBlog() {
+    this.postsSub = this.coreService.getPosts().subscribe((data: any) => {
+      this.posts = data;
     })
+    console.log(this.posts);
   }
 
 }
+

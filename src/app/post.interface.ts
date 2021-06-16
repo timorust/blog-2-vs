@@ -2,7 +2,7 @@ import { CommentInterface } from "./comment.interface";
 
 export interface PostInterface {
   userId: string;
-  id: number;
+  id: string;
   title: string;
   body: string;
   comments: CommentInterface[];

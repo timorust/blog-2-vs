@@ -15,7 +15,7 @@ import { UserInterface } from '../user.interface';
 })
 export class AuthService {
 
- user: Observable<UserInterface | null | undefined>;
+ user: Observable<UserInterface | null >;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore) {

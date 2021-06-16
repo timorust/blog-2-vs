@@ -1,2 +1,10 @@
-<h2>Blog Posts</h2>
+<button routerLink="/">Go Back</button>
+<ng-container *ngIf="post">
+  <h2 [innerText]="post.title"></h2>
+  <p [innerText]="post.body"></p>
+</ng-container>
+
+<ng-container *ngIf="comments">
+
+</ng-container>
 
