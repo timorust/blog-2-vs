@@ -38,4 +38,10 @@ export class AppComponent implements OnInit {
     })
   }
 
+
+  logOut() {
+    this.authservice.logOut();
+  }
+
+
 }

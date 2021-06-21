@@ -11,23 +11,29 @@ import { PostsPageComponent } from './pages/posts-page/posts-page.component';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth"
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { CommentsComponent } from './components/comments/comments.component'
+
 @NgModule({
   declarations: [
     AppComponent,
     PostPageComponent,
-    PostsPageComponent
+    PostsPageComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-
     AngularFireAuthModule,
-    AngularFirestoreModule
-
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
 

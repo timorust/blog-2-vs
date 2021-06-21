@@ -1,1 +1,20 @@
-<p>comments works!</p>
+<ng-container *ngIf="comments">
+  <h4>Comments is =>{{comments.length}}</h4>
+</ng-container>
+
+<form (ngSubmit)="sendComment()" [formGroup]="commentForm">
+
+  <label for="comment">Write your comment!</label>
+  <textarea [formControl]="internal" name="comment" id="comment" cols="30" rows="10"></textarea>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div class="comment" *ngFor="let item of comments">
+  <h5>{{item.displayName}}</h5>
+  <img [src]="item.photoURL" [alt]="item.displayName">
+  <p>{{item.comment}}</p>
+  <p>Created At is =>{{item.createdAt | date}}</p>
+
+  <button *ngIf="user?.uid === item.uid" (click)="deleteComment(item)">Delete</button>
+</div>
