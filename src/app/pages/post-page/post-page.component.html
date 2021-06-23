@@ -1,4 +1,5 @@
 <button routerLink="/">Go Back</button>
+<button (click)="removeThisPost()" *ngIf="post.userId == user.uid">Remove</button>
 
 <ng-container *ngIf="post">
   <h2 [innerText]="post.title"></h2>

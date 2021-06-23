@@ -1,0 +1,17 @@
+<form (ngSubmit)="addNewPost()" [formGroup]="addPostForm" *ngIf="user">
+
+  <div>
+    <label for="title">Post Title:</label>
+    <input autocomplete="off" [formControl]="addTitle" id="title" type="text">
+    <span *ngIf="addTitle.invalid && addTitle.touched && addTitle.dirty">Title is required!</span>
+  </div>
+
+  <div>
+    <label for="body">Post Body</label>
+    <textarea maxLength="500" [formControl]="addBody" name="body" id="body" cols="30" rows="10"></textarea>
+    <span>Max is =>{{addBody.value?.length}}/500</span>
+    <span *ngIf="addBody.errors?.required && addBody.touched && addBody.dirty">Body is required!</span>
+  </div>
+
+  <button type="submit">Save New Post</button>
+</form>

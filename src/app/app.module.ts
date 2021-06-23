@@ -12,14 +12,16 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth"
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-import { CommentsComponent } from './components/comments/comments.component'
+import { CommentsComponent } from './components/comments/comments.component';
+import { AddPageComponent } from './pages/add-page/add-page.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     PostPageComponent,
     PostsPageComponent,
-    CommentsComponent
+    CommentsComponent,
+    AddPageComponent
   ],
   imports: [
     BrowserModule,

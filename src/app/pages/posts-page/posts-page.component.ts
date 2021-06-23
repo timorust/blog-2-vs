@@ -33,10 +33,9 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   }
 
   getBlog() {
-    this.postsSub = this.coreService.getPosts().subscribe((data: any) => {
-      this.posts = data;
+    this.postsSub = this.coreService.getPosts().subscribe((blog: any) => {
+      this.posts = blog.sort((a: PostInterface, b: PostInterface) => a.createdAt > b.createdAt ? 1 : -1);
     })
-    console.log(this.posts);
   }
 
 }

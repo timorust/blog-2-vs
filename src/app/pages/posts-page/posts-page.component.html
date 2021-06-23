@@ -1,7 +1,7 @@
 <ul>
   <li *ngFor="let post of posts;">
     <h4>{{post.title}}</h4>
-    <p>{{post.body.slice(0, 120)}}...</p>
+    <p>{{post.body?.slice(0, 120)}}...</p>
     <button routerLink="/post/{{post.id}}">Read More</button>
   </li>
 </ul>
