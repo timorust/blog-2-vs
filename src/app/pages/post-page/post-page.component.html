@@ -3,6 +3,13 @@
 
 <ng-container *ngIf="post">
   <h2 [innerText]="post.title"></h2>
+  <h3>Score is =>{{post.score}}</h3>
+
+  <button (click)="toggleVote()" *ngIf="!user?.voted.includes(postId)">
+    <ng-container *ngIf="userVoted">Down Vote</ng-container>
+    <ng-container *ngIf="!userVoted">Up Vote</ng-container>
+  </button>
+
   <p [innerText]="post.body"></p>
 </ng-container>
 

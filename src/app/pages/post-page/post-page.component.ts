@@ -12,6 +12,8 @@ import { UserInterface } from 'src/app/user.interface';
 })
 export class PostPageComponent implements OnInit, OnDestroy {
 
+  userVoted: boolean;
+
   userSub;
   user: UserInterface;
 
@@ -39,13 +41,14 @@ export class PostPageComponent implements OnInit, OnDestroy {
   getUser() {
     this.userSub = this.authService.user.subscribe((userDoc: UserInterface) => {
       this.user = userDoc;
+      this.userVoted = userDoc.voted.includes(this.postId);
     })
   }
 
   removeThisPost() {
-    this.coreService.removePostById(this.postId).then(() => {
+    this.coreService.removePostById(this.postId).then(async () => {
       alert('Delete Successfily!');
-      this.router.navigateByUrl('/');
+      await this.router.navigateByUrl('/');
     })
   }
 
@@ -53,6 +56,20 @@ export class PostPageComponent implements OnInit, OnDestroy {
     this.postSub = this.coreService.getPost(this.postId).subscribe((postDoc: PostInterface) => {
       this.post = postDoc;
     })
+  }
+
+  toggleVote() {
+    if(this.userVoted) {
+      this.coreService.voteDownPostScore(this.postId, this.user.uid).then(() => {
+      alert('Down Voted Successfilly');
+    })
+    }
+    else {
+       this.coreService.voteUpPostScore(this.postId, this.user.uid).then(() => {
+      alert('Voted Successfilly');
+    })
+    }
+
   }
 
 }

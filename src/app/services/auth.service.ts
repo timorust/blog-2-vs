@@ -15,7 +15,7 @@ import { UserInterface } from '../user.interface';
 })
 export class AuthService {
 
- user: Observable<UserInterface | null >;
+ user: Observable<UserInterface | null > | null;
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore) {
@@ -37,7 +37,8 @@ export class AuthService {
       displayName: auth.displayName,
       email: auth.email,
       photoURL: auth.photoURL,
-      uid: auth.uid
+      uid: auth.uid,
+      voted: []
     })
   }
 

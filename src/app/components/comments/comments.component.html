@@ -2,8 +2,7 @@
   <h4>Comments is =>{{comments.length}}</h4>
 </ng-container>
 
-<form (ngSubmit)="sendComment()" [formGroup]="commentForm">
-
+<form (ngSubmit)="sendComment()" [formGroup]="commentForm" *ngIf="user">
   <label for="comment">Write your comment!</label>
   <textarea [formControl]="internal" name="comment" id="comment" cols="30" rows="10"></textarea>
 
